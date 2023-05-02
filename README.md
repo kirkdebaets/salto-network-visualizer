@@ -1,5 +1,7 @@
 # Salto Network Visualizer
 
+# *EXPERIMENTAL *
+
 First iteration of a Python script to generate a network diagram of the outputs from [Salto](https://github.com/salto-io/salto).
 
 install:
