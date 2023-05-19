@@ -41,11 +41,12 @@ def process_nacl(nacl_file):
         if len(product) > 0:
             nacl_re_string = "\s" + product + "\.\w+\.instance\.[\w@.]+"
             nacl_re = re.compile(nacl_re_string)
-            nacl_match = nacl_re.search(line)
-            if nacl_match:
-                if '"' in nacl_match.group():
-                    continue 
-                data.append((source,nacl_match.group()))
+            nacl_matches = nacl_re.findall(line)
+            for nacl_match in nacl_matches:
+                if nacl_match:
+                    if '"' in nacl_match:
+                        continue 
+                    data.append((source,nacl_match.lstrip()))
 
 rootdir_glob = rootdir + "/**/*nacl"
 file_list = [f for f in iglob(rootdir_glob, recursive=True) if os.path.isfile(f)]
